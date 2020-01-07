@@ -90,7 +90,7 @@ class Graphql
             return null;
         }
 
-        $result = null;//$this->Exec($query);
+        $result = $this->Exec($query);//null;
         
         return $result;
     }

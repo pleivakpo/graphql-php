@@ -13,6 +13,11 @@ Create this path with the file getMaster.graphql
 ```path
 /inc/queries/getMaster.graphql
 ```
+
+Se usa el string de formateo para poder incorporar los parametros dinamicamente.
+
+Está compuesto de cero o más directivas: caracteres ordinarios (excluyendo %) que son copiados directamente al resultado, y especificaciones de conversión, donde cada una de las cuales da lugar a extraer su propio parámetro. Esto se aplica tanto para sprintf() como para printf(). [ https://www.php.net/manual/es/function.sprintf.php ]
+
 ```graphql
     query {  
         listMaster %s {
