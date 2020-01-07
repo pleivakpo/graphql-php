@@ -1,6 +1,6 @@
 {
-    "name": "kappo/kpographqlphp",
-    "description": "My first packagist package",
+    "name": "kappo/graphql-php",
+    "description": "Consume Graphql from Php with Curl",
     "version": "1.0.0",
     "type": "library",
     "require": {
