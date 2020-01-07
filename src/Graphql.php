@@ -9,12 +9,11 @@
 
 // If you don't to add a custom vendor folder, then use the simple class
 // namespace HelloComposer;
-namespace Kappo\GraphQl\Php;
+namespace Kappo;
 
-class GraphQl
+class Graphql
 {
-    public $log = [];
-    
+    public $log = [];    
     private $endPoint = "";
     private $apiKey = "";
 
