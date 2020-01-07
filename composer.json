@@ -3,7 +3,8 @@
     "description": "My first packagist package",
     "type": "package",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "kappo/kpographqlphp": "dev-master"
     },
     "license": "mit",
     "authors": [
@@ -15,7 +16,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Kappo\\HelloComposer\\": "src/"
+            "Kappo\\GraphQlComposer\\": "src/"
         }
     }
 }
