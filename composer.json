@@ -1,6 +1,7 @@
 {
     "name": "kappo/kpographqlphp",
     "description": "My first packagist package",
+    "version": "1.0.0",
     "type": "package",
     "require": {
         "php": ">=5.3.0"
@@ -8,8 +9,8 @@
     "license": "mit",
     "authors": [
         {
-            "name": "Your Name",
-            "email": "your@email.com"
+            "name": "Pablo Leiva",
+            "email": "pablo.leiva@kpoapp.com"
         }
     ],
     "minimum-stability": "stable",
