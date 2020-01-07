@@ -49,13 +49,15 @@ class Graphql
         
         $_query = $request['file'];
                 
-        $_inputCollection = $request['params']['filter'];
+        
         $_limit = isset($request['params']['limit']) ? $request['params']['limit'] : null;
         $_nextToken = isset($request['params']['nextToken']) ? $request['params']['nextToken'] : null;
 
         $_input='';
 
         $_inputstr = $request['type'] === 'query' ? 'filter' : 'input';
+
+        $_inputCollection = $request['params'][$_inputstr];
 
         if (count($_inputCollection)) {
             $_input = "$_inputstr:{\n";

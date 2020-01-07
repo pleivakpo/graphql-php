@@ -54,6 +54,10 @@ class Master extends Graphql
 
     }
 }
+
+$master = new Master();
+$master->Get();
+
 ```
 
 Test php file with
