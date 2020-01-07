@@ -1,14 +1,5 @@
 <?php
 
-/*
- * (c) YOUR NAME <your@email.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
-// If you don't to add a custom vendor folder, then use the simple class
-// namespace HelloComposer;
 namespace Kappo;
 
 class Graphql
@@ -55,42 +46,49 @@ class Graphql
         if (empty($request['type']) || empty($request['file'])) {
             die('Kappo GraphQL Exception :: gql_exec require a "type", "file" and "params" to execute Operation');
         }
-
-        $path = '';
-        $query = '';
-
-        switch ($request['type']) {
-            case 'query':
-                $path = 'queries/'.$request['file'].'.graphql';
-                break;
-            case 'mutation':
-                $path = 'mutations/'.$request['file'].'.graphql';
-                break;
-        }
         
-        $query = file_get_contents($path, true);
+        $_query = $request['file'];
+                
+        $_inputCollection = $request['params']['filter'];
+        $_limit = isset($request['params']['limit']) ? $request['params']['limit'] : null;
+        $_nextToken = isset($request['params']['nextToken']) ? $request['params']['nextToken'] : null;
 
-        $_params = $request['params'];
-        $_input = '';
+        $_input='';
 
-        foreach ($_params as $key => $item) {
-            $_input .= $key.' '.$item." \n";
+        $_inputstr = $request['type'] === 'query' ? 'filter' : 'input';
+
+        if (count($_inputCollection)) {
+            $_input = "$_inputstr:{\n";
+            foreach ($_inputCollection as $key => $item) {
+                $_input .= $key.' '.$item."\n";
+            }
+            $_input .='}';
         }
 
-        $query = sprintf($query, $_input);
+        if(!empty($_limit)){
+            $_limit = "\n ,limit: ".$_limit;
+        }
+
+        if(!empty($_nextToken)){
+            $_nextToken = "\n ,nextToken: ".$_nextToken;
+        }
+
+        $_content = "";
+
+        if (isset($request['params'])) {
+            $_format = "(%s %s %s)";
+            $_content = sprintf($_format, $_input, $_limit, $_nextToken);
+        }
+
+        $query = sprintf($_query, $_content);
 
         $this->log[] = $query;
-        // die();
-
-        if ($request['type'] == "mutation") {
-            return null;
-        }
         
         if (empty($query)) {
             return null;
         }
 
-        $result = $this->Exec($query);
+        $result = null;//$this->Exec($query);
         
         return $result;
     }
