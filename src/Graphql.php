@@ -92,6 +92,8 @@ class Graphql
 
         $result = $this->Exec($query);//null;
         
+        $this->log[] = $result;
+
         return $result;
     }
     
